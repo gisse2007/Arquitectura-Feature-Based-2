@@ -3,11 +3,11 @@ import { useState } from "react";
 import MainLayout from "./features/shared/layouts/MainLayout";
 import DashboardPage from "./features/dashboard/pages/DashboardPage";
 import ProductsPage from "./features/products/pages/ProductsPage";
-import CartPage from "./features/cart/pages/CartPage";
+import ContactPage from "./features/cart/pages/ContactPage";
+// import CartPage from "./features/cart/pages/CartPage";
 
 function App() {
   // Estado global 
-  const [products] = useState([]); // más adelante puedes llenarlo con JSON o API
   const [cartItems, setCartItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -23,43 +23,40 @@ function App() {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <MainLayout
-            cartItems={cartItems}
-            handleRemoveFromCart={handleRemoveFromCart}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
-        }
-      >
-        <Route
-          index
-          element={
-            <DashboardPage
-              handleAddToCart={handleAddToCart}
-              searchQuery={searchQuery}
-            />
-          }
+  <Route
+    path="/"
+    element={
+      <MainLayout
+        cartItems={cartItems}
+        handleRemoveFromCart={handleRemoveFromCart}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+    }
+  >
+    <Route
+      index
+      element={
+        <DashboardPage
+          handleAddToCart={handleAddToCart}
+          searchQuery={searchQuery}
         />
-        <Route
-          path="products"
-          element={
-            <ProductsPage
-              products={products}
-              handleAddToCart={handleAddToCart}
-              searchQuery={searchQuery}
-            />
-          }
+      }
+    />
+    <Route
+      path="products"
+      element={
+        <ProductsPage
+          handleAddToCart={handleAddToCart}
+          searchQuery={searchQuery}
         />
-        <Route path="cart" element={<CartPage cartItems={cartItems} />} />
-      </Route>
-    </Routes>
+      }
+    />
+    <Route path="contact" element={<ContactPage />} />
+  </Route>
+</Routes>
+
   );
 }
 
 export default App;
-
-
-

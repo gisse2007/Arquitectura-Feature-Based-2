@@ -10,6 +10,3 @@ const ProductsPage = ({ handleAddToCart, searchQuery }) => {
 };
 
 export default ProductsPage;
-
-
-

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -8,17 +8,21 @@ const MainLayout = ({
   setSearchQuery = () => {}, 
   handleRemoveFromCart = () => {}
 }) => {
+  const location = useLocation();
+
+  // Ocultar carrito y buscador solo en la página de contacto
+  const hideCartAndSearch = location.pathname === "/contact";
+
   return (
     <div className="app-wrapper">
-      {/* Navbar recibe carrito y buscador */}
       <Navbar
         cartItems={cartItems}
         handleRemoveFromCart={handleRemoveFromCart} 
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        hideCartAndSearch={hideCartAndSearch}  
       />
 
-      {/* Aquí se renderiza la página activa */}
       <main className="main-content">
         <Outlet />
       </main>
@@ -29,6 +33,3 @@ const MainLayout = ({
 };
 
 export default MainLayout;
-
-
-

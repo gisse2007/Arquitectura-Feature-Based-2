@@ -1,13 +1,14 @@
 import React from "react";
 
-function ProductCard({ image, title, category, description, price, rating, addToCart }) {
-  const product = { 
-    image, 
-    title,       
-    category, 
-    description, 
-    price, 
-    rating 
+function ProductCard({ id, image, title, category, description, price, rating, addToCart }) {
+  const product = {
+    id,
+    image,
+    title,
+    category,
+    description,
+    price,
+    rating,
   };
 
   return (
@@ -17,9 +18,12 @@ function ProductCard({ image, title, category, description, price, rating, addTo
       <p className="category">Categoría: {category}</p>
       <p className="description">{description}</p>
       <p className="price">${price}</p>
-      <p>
-        Valoración: {rating.rate} ⭐ ({rating.count} reseñas)
-      </p>
+
+      {rating && (
+        <p>
+          Valoración: {rating.rate} ⭐ ({rating.count} reseñas)
+        </p>
+      )}
 
       <button className="botonCarrito" onClick={() => addToCart(product)}>
         Agregar al carrito
@@ -28,5 +32,5 @@ function ProductCard({ image, title, category, description, price, rating, addTo
   );
 }
 
-
 export default ProductCard;
+

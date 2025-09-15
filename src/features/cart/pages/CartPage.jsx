@@ -18,6 +18,3 @@ const CartPage = ({ cartItems }) => {
 };
 
 export default CartPage;
-
-
-
